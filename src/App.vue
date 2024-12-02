@@ -1,24 +1,23 @@
 <template>
   <nav>
-<!--    <router-link to="/">Home</router-link> |-->
-<!--    <router-link to="/about">About</router-link>|-->
-<!--    <router-link to="/login">Login</router-link>|-->
-<!--    <router-link to="/register">Register</router-link>-->
-    <Navbar/>
+    <Navbar />
   </nav>
   <router-view />
 </template>
-
 
 <script>
 import * as bootstrap from "bootstrap";
 import Navbar from "@/components/Navbar.vue";
 
 export default {
-  components: {Navbar}
-
-}
-
+  components: { Navbar },
+  created() {
+    if (localStorage.getItem("token") && localStorage.getItem("auth")) {
+      this.$store.dispatch("setToken", localStorage.getItem("token"));
+      this.$store.dispatch("setAuth", JSON.parse(localStorage.getItem("auth")));
+    }
+  },
+};
 </script>
 <style lang="scss">
 @import "app.scss";
