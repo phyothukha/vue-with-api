@@ -4,10 +4,19 @@ import RegisterView from "@/views/RegisterView.vue";
 import LoginView from "@/views/LoginView.vue";
 import DashboardView from "@/views/DashboardView.vue";
 import store from "@/store";
+import ProductView from "@/views/ProductView.vue";
+import ProductCreate from "@/views/ProductCreate.vue";
 
 const alreadyLogin = (to, from, next) => {
   if (store.state.auth) {
     return next("/dashboard");
+  }
+  return next();
+};
+
+const needLogin = (to, from, next) => {
+  if (store.state.auth === null) {
+    return next("/login");
   }
   return next();
 };
@@ -31,6 +40,7 @@ const routes = [
     path: "/register",
     name: "register",
     component: RegisterView,
+    beforeEnter: [alreadyLogin],
   },
   {
     path: "/login",
@@ -42,13 +52,19 @@ const routes = [
     path: "/dashboard",
     name: "dashboard",
     component: DashboardView,
-    beforeEnter: (to, from, next) => {
-      console.log("hello");
-      if (store.state.auth == null) {
-        next("/login");
-      }
-      return next();
-    },
+    beforeEnter: [needLogin],
+  },
+  {
+    path: "/products",
+    name: "product",
+    component: ProductView,
+    beforeEnter: [needLogin],
+  },
+  {
+    path: "/product-create",
+    name: "product-create",
+    component: ProductCreate,
+    beforeEnter: [needLogin],
   },
 ];
 

@@ -22,6 +22,14 @@
             >
           </li>
           <li class="nav-item">
+            <router-link
+              class="nav-link active"
+              aria-current="page"
+              to="/dashboard"
+              >Dashboard</router-link
+            >
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/about"
               >About</router-link
             >
