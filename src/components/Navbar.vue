@@ -34,7 +34,30 @@
               >About</router-link
             >
           </li>
-
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Products
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
+              <li>
+                <router-link class="dropdown-item" to="/products"
+                  >Product List</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/product-create"
+                  >Add Product</router-link
+                >
+              </li>
+            </ul>
+          </li>
           <template v-if="auth === null">
             <li class="nav-item">
               <router-link class="nav-link" to="/login">Login</router-link>

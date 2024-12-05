@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container my-5">
     <h1>Product Create</h1>
     <hr />
     <form action="" @submit.prevent="addProducts" ref="productCreate">

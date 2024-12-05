@@ -1,24 +1,59 @@
 <template>
-  <div class="container">
-    <h1>Product View</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit itaque
-      repellendus ipsum incidunt magnam exercitationem reiciendis iure neque
-      provident quo voluptates sunt voluptatibus temporibus similique placeat
-      ut, quidem, officiis aliquam?
-    </p>
+  <div class="container my-5">
+    <h1>Product List</h1>
+    <hr />
 
-    <router-link to="/products" class="btn me-3 btn-outline-primary"
-      >Product List</router-link
-    >
-    <router-link to="/product-create" class="btn btn-primary"
-      >Product Create</router-link
-    >
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>name</th>
+          <th>price</th>
+          <th>stock</th>
+          <th>date</th>
+          <th>time</th>
+          <th>controls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="row in rows.data">
+          <td>{{ row.id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.price }}</td>
+          <td>{{ row.stock }}</td>
+          <td>{{ row.date }}</td>
+          <td>{{ row.time }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+import { mapGetters } from "vuex";
+
+export default {
+  data() {
+    return {
+      rows: {},
+    };
+  },
+  computed: {
+    ...mapGetters(["getUrl"]),
+  },
+
+  methods: {
+    fetchProducts() {
+      axios.get(this.getUrl("/products")).then((res) => (this.rows = res.data));
+    },
+  },
+
+  mounted() {
+    this.fetchProducts();
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

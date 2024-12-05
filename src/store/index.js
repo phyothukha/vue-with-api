@@ -1,44 +1,36 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    myName:"Phyo Thu Kha",
-    apiUrl:"http://127.0.0.1:8000/api/v1",
-    auth:null,
-    token:null,
+    myName: "Phyo Thu Kha",
+    apiUrl: "http://127.0.0.1:8000/api/v1",
+    auth: null,
+    token: null,
   },
   getters: {
-    getUrl:(state)=>(uri)=>{
-      return state.apiUrl+uri
+    getUrl: (state) => (uri) => {
+      return state.apiUrl + uri;
     },
-  myNameLength:(state)=>{
-    return state.myName.length
+    myNameLength: (state) => {
+      return state.myName.length;
+    },
+    myNameToUpper: (state) => {
+      return state.myName.toUpperCase();
+    },
   },
-   myNameToUpper:(state)=>{
-    return state.myName.toUpperCase()
-   },
-
-
-
-
-  },
-  mutations: {
-  },
+  mutations: {},
   actions: {
-        setAuth({state},auth){
-          return state.auth= auth
-        },
+    setAuth({ state }, auth) {
+      return (state.auth = auth);
+    },
 
-        setToken({state},token){
-          return state.token=token
-        },
-        logout({state}){
-             state.auth=null
-            state.token=null
-        }
-
-
+    setToken({ state }, token) {
+      return (state.token = token);
+    },
+    logout({ state }) {
+      state.auth = null;
+      state.token = null;
+    },
   },
-  modules: {
-  }
-})
+  modules: {},
+});
