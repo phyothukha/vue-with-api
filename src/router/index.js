@@ -70,7 +70,7 @@ const routes = [
   },
   {
     path: "/product/edit/:id",
-    name: "product.create",
+    name: "product.edit",
     component: ProductUpdate,
     beforeEnter: [needLogin],
   },

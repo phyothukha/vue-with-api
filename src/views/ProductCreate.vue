@@ -2,7 +2,7 @@
   <div class="container my-5">
     <h1>Product Create</h1>
     <hr />
-    <form action="" @submit.prevent="addProducts" ref="productCreate">
+    <form @submit.prevent="addProducts" ref="productCreate">
       <div class="row">
         <div class="col">
           <div class="mb-3">
@@ -55,6 +55,7 @@ import Input from "@/components/Input";
 import axios from "axios";
 import { mapGetters } from "vuex";
 import Swal from "sweetalert2/dist/sweetalert2.js";
+import { throttle } from "lodash";
 
 export default {
   components: { Input },
@@ -87,7 +88,7 @@ export default {
       });
     },
 
-    addProducts() {
+    addProducts: throttle(function () {
       this.isLoading = true;
       const formData = new FormData(this.$refs.productCreate);
 
@@ -95,7 +96,7 @@ export default {
         .post(this.getUrl("/products"), formData)
         .then((res) => {
           this.errors = {};
-          this.showToast("success", "create successfully!");
+          this.showToast("success", res.data.message);
           this.$refs.productCreate.reset();
         })
         .catch((err) => {
@@ -106,7 +107,7 @@ export default {
           }
         })
         .finally((_) => (this.isLoading = false));
-    },
+    }, 500),
   },
 };
 </script>

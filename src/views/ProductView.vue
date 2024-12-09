@@ -1,13 +1,15 @@
 <template>
   <div class="container my-5">
     <h1>Product List</h1>
+    <div class="w-50 ms-auto d-block">
+      <Search @search="search" />
+    </div>
     <hr />
-
     <table class="table text-center align-middle">
       <thead>
         <tr>
           <th>#</th>
-          <th class=" text-start">name</th>
+          <th class="text-start">name</th>
           <th>price</th>
           <th>stock</th>
           <th>date</th>
@@ -55,6 +57,7 @@
 
 <script>
 import Pagination from "@/components/Pagination.vue";
+import Search from "@/components/Search";
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 import { mapGetters } from "vuex";
@@ -67,12 +70,16 @@ export default {
   },
   components: {
     Pagination,
+    Search,
   },
   computed: {
     ...mapGetters(["getUrl"]),
   },
 
   methods: {
+    search(keyword) {
+      this.fetchProducts(this.getUrl("/products?keyword=" + keyword));
+    },
     showToast(icon, message) {
       Swal.mixin({
         toast: true,

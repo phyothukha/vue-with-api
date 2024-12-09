@@ -1,8 +1,8 @@
 <template>
   <div class="container my-5">
-    <h1>Product Create</h1>
+    <h1>Product Update</h1>
     <hr />
-    <form action="" @submit.prevent="addProducts" ref="productUpdate">
+    <form action="" @submit.prevent="updateProducts" ref="productUpdate">
       <div class="row">
         <div class="col">
           <div class="mb-3">
@@ -90,7 +90,7 @@ export default {
       });
     },
 
-    addProducts() {
+    updateProducts() {
       this.isLoading = true;
       const formData = new FormData(this.$refs.productUpdate);
 
