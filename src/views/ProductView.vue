@@ -7,7 +7,7 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>name</th>
+          <th class=" text-start">name</th>
           <th>price</th>
           <th>stock</th>
           <th>date</th>
@@ -18,7 +18,7 @@
       <tbody>
         <tr v-for="row in rows.data">
           <td>{{ row.id }}</td>
-          <td>{{ row.name }}</td>
+          <td class="text-start">{{ row.name }}</td>
           <td>{{ row.price }}</td>
           <td>{{ row.stock }}</td>
           <td>{{ row.date }}</td>
@@ -31,9 +31,12 @@
               >
                 <i class="bi bi-info-circle"></i>
               </button>
-              <button class="btn btn-outline-primary">
+              <router-link
+                :to="'/product/edit/' + row.id"
+                class="btn btn-outline-primary"
+              >
                 <i class="bi bi-pencil"></i>
-              </button>
+              </router-link>
               <button
                 @click="deleteProduct(row.id)"
                 class="btn btn-outline-primary"

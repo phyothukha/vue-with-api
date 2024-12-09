@@ -4,6 +4,7 @@
     <input
       :type="type"
       :class="{ 'is-invalid': errors[name] }"
+      :value="value"
       :name="name"
       class="form-control"
     />
@@ -30,6 +31,9 @@ export default {
     },
     errors: {
       type: Object,
+    },
+    value: {
+      default: null,
     },
   },
 };

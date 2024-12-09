@@ -6,6 +6,7 @@ import DashboardView from "@/views/DashboardView.vue";
 import store from "@/store";
 import ProductView from "@/views/ProductView.vue";
 import ProductCreate from "@/views/ProductCreate.vue";
+import ProductUpdate from "@/views/ProductUpdate.vue";
 
 const alreadyLogin = (to, from, next) => {
   if (store.state.auth) {
@@ -63,8 +64,14 @@ const routes = [
   },
   {
     path: "/product-create",
-    name: "product-create",
+    name: "product.create",
     component: ProductCreate,
+    beforeEnter: [needLogin],
+  },
+  {
+    path: "/product/edit/:id",
+    name: "product.create",
+    component: ProductUpdate,
     beforeEnter: [needLogin],
   },
 ];

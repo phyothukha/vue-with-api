@@ -21,7 +21,7 @@ importers:
         specifier: ^1.11.3
         version: 1.11.3
       core-js:
-        specifier: ^3.8.3
+        specifier: ^3.39.0
         version: 3.39.0
       sweetalert2:
         specifier: ^11.14.5
